@@ -46,8 +46,12 @@ install:
 # - cmd: call "%VCVARS_SCRIPT%"
 
 - cmd: echo "Set have_access_key_id (%ACCESS_KEY_ID%)"
-- ps: $env:ACCESS_KEY_ID -eq $null
-- ps: $env:ACCESS_KEY_ID -eq ""
+- ps: >-
+   If ($env:ACCESS_KEY_ID -eq $null) {
+       $env:have_access_key_id = "no"
+   } Else {
+       $env:have_access_key_id = "yes"
+   }
 
 - cmd: echo "Get submodules"
 # - cmd: git submodule update --init --recursive
@@ -151,6 +155,8 @@ deploy:
   artifact: art_folder
   unzip: true
   set_public: true
+  on:
+    have_access_key_id: yes
 
 # github releases - only tags
 - provider: GitHub
