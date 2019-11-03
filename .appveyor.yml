@@ -45,6 +45,8 @@ install:
 # Load command-line tools (lib.exe)
 # - cmd: call "%VCVARS_SCRIPT%"
 
+- cmd: echo "Set have_access_key_id (%ACCESS_KEY_ID%)"
+
 - cmd: echo "Get submodules"
 # - cmd: git submodule update --init --recursive
 
