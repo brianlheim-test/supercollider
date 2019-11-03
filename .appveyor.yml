@@ -46,6 +46,8 @@ install:
 # - cmd: call "%VCVARS_SCRIPT%"
 
 - cmd: echo "Set have_access_key_id (%ACCESS_KEY_ID%)"
+- ps: $env:ACCESS_KEY_ID -eq $null
+- ps: $env:ACCESS_KEY_ID -eq ""
 
 - cmd: echo "Get submodules"
 # - cmd: git submodule update --init --recursive
